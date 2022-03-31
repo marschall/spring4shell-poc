@@ -1,6 +1,7 @@
 package com.github.marschall.spring4shell.client;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -20,8 +21,9 @@ public class Spring4ShellClient {
     RestTemplate restTemplate = new RestTemplate();
 
     RequestEntity<String> jsonEntity = newJsonEntity(baseUri);
-    ResponseEntity<Void> jsonResponse = restTemplate.exchange(jsonEntity, Void.class);
+    ResponseEntity<String> jsonResponse = restTemplate.exchange(jsonEntity, String.class);
     System.out.println(jsonResponse.getStatusCodeValue());
+    System.out.println(jsonResponse.getBody());
 
     RequestEntity<String> payloadEntity = newPayloadEntity(baseUri);
     ResponseEntity<Void> payloadResponse = restTemplate.exchange(payloadEntity, Void.class);
@@ -31,6 +33,7 @@ public class Spring4ShellClient {
   private static RequestEntity<String> newJsonEntity(URI baseUri) {
     HttpHeaders httpHeaders = new HttpHeaders();
     httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+    httpHeaders.setAccept(List.of(MediaType.TEXT_PLAIN));
     return new RequestEntity<>("{\"name\": \"safe\"}", httpHeaders, HttpMethod.POST, baseUri);
   }
 

@@ -15,9 +15,10 @@ public class SimpleController {
   
   private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-  @PostMapping(path =  "/model", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public void jsonEnpoint(@RequestBody Model model) {
+  @PostMapping(path =  "/model", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
+  public String jsonEnpoint(@RequestBody Model model) {
     LOG.info("jsonEnpoint");
+    return this.getClass().getClassLoader().getClass().getName();
   }
 
   @RequestMapping("/model")
