@@ -16,12 +16,12 @@ public class SimpleController {
   private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
   @PostMapping(path =  "/model", consumes = MediaType.APPLICATION_JSON_VALUE)
-  void jsonEnpoint(@RequestBody Model model) {
+  public void jsonEnpoint(@RequestBody Model model) {
     LOG.info("jsonEnpoint");
   }
 
   @RequestMapping("/model")
-  public void webDataBinderEndpoint(Model evalBean){
+  public void webDataBinderEndpoint(Model model){
     LOG.info("webDataBinderEndpoint");
   }
 

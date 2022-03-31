@@ -1,3 +1,5 @@
+https://github.com/BobTheShoplifter/Spring4Shell-POC/blob/main/poc.py
+
 suffix: %>//
 c1: Runtime
 c2: <%
