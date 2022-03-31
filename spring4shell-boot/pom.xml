@@ -26,9 +26,19 @@
       <artifactId>spring4shell-controller</artifactId>
       <version>${project.version}</version>
     </dependency>
+
+    <!-- Spring -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot</artifactId>
+      <!--
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-jcl</artifactId>
+        </exclusion>
+      </exclusions>
+      -->
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -37,12 +47,40 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-tomcat</artifactId>
+    <!--
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.tomcat.embed</groupId>
+          <artifactId>tomcat-embed-el</artifactId>
+        </exclusion>
+      </exclusions>
       <exclusions>
         <exclusion>
           <groupId>org.apache.tomcat.embed</groupId>
           <artifactId>tomcat-embed-websocket</artifactId>
         </exclusion>
       </exclusions>
+     -->
+    </dependency>
+
+    <!-- logging -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+    </dependency>
+    <!--
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-jcl</artifactId>
+    </dependency>
+     -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-jul</artifactId>
     </dependency>
   </dependencies>
   
