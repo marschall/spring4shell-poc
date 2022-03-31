@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SimpleController {
   
-  @PostMapping("/employees")
+  @PostMapping("/model")
   void simplePost(@RequestBody Model model) {
     // empty
   }

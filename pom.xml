@@ -48,6 +48,7 @@
   </licenses>
   
   <modules>
+    <module>spring4shell-client</module>
     <module>spring4shell-controller</module>
     <module>spring4shell-war</module>
     <module>spring4shell-boot</module>
@@ -68,6 +69,11 @@
         <version>5.3.17</version>
         <type>pom</type>
         <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.servlet</groupId>
+        <artifactId>jakarta.servlet-api</artifactId>
+        <version>4.0.4</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

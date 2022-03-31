@@ -6,24 +6,12 @@
     <artifactId>spring4shell-poc</artifactId>
     <version>0.1.0-SNAPSHOT</version>
   </parent>
-  <artifactId>spring4shell-controller</artifactId>
+  <artifactId>spring4shell-client</artifactId>
 
   <dependencies>
     <dependency>
       <groupId>org.springframework</groupId>
-      <artifactId>spring-webmvc</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>jakarta.servlet</groupId>
-      <artifactId>jakarta.servlet-api</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <!-- for debugging -->
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-catalina</artifactId>
-      <version>9.0.60</version>
-      <scope>test</scope>
+      <artifactId>spring-web</artifactId>
     </dependency>
   </dependencies>
 

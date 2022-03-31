@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableWebMvc
-public class PocConfiguration {
+public class PocWebMvcConfiguration {
 
   @Bean
   public SimpleController simpleController() {
