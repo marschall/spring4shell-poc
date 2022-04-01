@@ -48,6 +48,7 @@
   </licenses>
   
   <modules>
+    <module>spring4shell-agent</module>
     <module>spring4shell-boot</module>
     <module>spring4shell-client</module>
     <module>spring4shell-controller</module>
