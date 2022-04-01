@@ -30,3 +30,8 @@ Set break points in
   -> does not seem to expose anything
 - `org.eclipse.jetty.webapp.WebAppClassLoader`
   -> exposes a context as well
+
+
+## Disable Tomcat JSP Support
+
+Remove `jsp` / `org.apache.jasper.servlet.JspServlet` from `conf/web.xm`

@@ -48,11 +48,13 @@
   </licenses>
   
   <modules>
+    <module>spring4shell-boot</module>
     <module>spring4shell-client</module>
     <module>spring4shell-controller</module>
     <module>spring4shell-bare-war</module>
+    <module>spring4shell-jsp</module>
     <module>spring4shell-tomcat-war</module>
-    <module>spring4shell-boot</module>
+    <module>spring4shell-model</module>
   </modules>
 
   <dependencyManagement>
