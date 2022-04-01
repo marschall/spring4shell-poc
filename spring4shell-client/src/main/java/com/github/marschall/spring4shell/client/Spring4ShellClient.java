@@ -15,6 +15,7 @@ public class Spring4ShellClient {
   public static void main(String[] args) {
     String host = "http://localhost:8080/";
     String context = "spring4shell";
+//    String context = "spring4shell-war-0.1.0-SNAPSHOT";
     String servlet = "poc";
     String endpoint = "model";
     URI baseUri = URI.create(host + context + "/" + servlet + "/" + endpoint);

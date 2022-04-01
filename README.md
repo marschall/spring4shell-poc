@@ -20,3 +20,13 @@ Set break points in
 ## Running
 
     ./catalina.sh jpda debug
+
+    mvn -am -pl spring4shell-war jetty:run
+
+
+## Classloaders
+
+- `org.jboss.modules.ModuleClassLoader`
+  -> does not seem to expose anything
+- `org.eclipse.jetty.webapp.WebAppClassLoader`
+  -> exposes a context as well

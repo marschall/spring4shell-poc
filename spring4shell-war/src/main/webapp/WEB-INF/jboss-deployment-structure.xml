@@ -1,6 +1,9 @@
 <jboss-deployment-structure>
   <deployment>
     <exclude-subsystems>
+      <subsystem name="ejb3" />
+      <subsystem name="jaxrs" />
+      <subsystem name="jpa" />
       <subsystem name="jsf" />
       <subsystem name="weld" />
     </exclude-subsystems>
