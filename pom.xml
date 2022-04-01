@@ -53,8 +53,9 @@
     <module>spring4shell-controller</module>
     <module>spring4shell-bare-war</module>
     <module>spring4shell-jsp</module>
-    <module>spring4shell-tomcat-war</module>
     <module>spring4shell-model</module>
+    <module>spring4shell-tomcat-war</module>
+    <module>spring4shell-valve</module>
   </modules>
 
   <dependencyManagement>

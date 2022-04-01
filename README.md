@@ -34,4 +34,10 @@ Set break points in
 
 ## Disable Tomcat JSP Support
 
-Remove `jsp` / `org.apache.jasper.servlet.JspServlet` from `conf/web.xm`
+Remove `jsp` / `org.apache.jasper.servlet.JspServlet` from `${TOMCAT_HOME}/conf/web.xml`
+
+## Custom Valve
+
+Add to `${TOMCAT_HOME}/conf/server.xml`
+
+    <Valve className="com.github.marschall.spring4shell.valve.SimpleFilterValue" />
