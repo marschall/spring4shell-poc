@@ -24,10 +24,10 @@ public class DemoWebApplicationInitializer implements WebApplicationInitializer 
     AnnotationConfigWebApplicationContext dispatcherContext = registerApplicationContext(context);
 
     registerDispatcherServlet(context, dispatcherContext);
-    registerFilter(context);
+    registerMultipartFilter(context);
   }
 
-  private void registerFilter(ServletContext context) {
+  private void registerMultipartFilter(ServletContext context) {
     var dynamic = context.addFilter("multipart-filter", new MultipartFilter());
     dynamic.addMappingForServletNames(EnumSet.of(DispatcherType.REQUEST), false, SERVLET_NAME);
   }

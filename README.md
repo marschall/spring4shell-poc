@@ -19,7 +19,7 @@ Set break points in
 
 ## Running
 
-    ./catalina.sh jpda debug
+    ./catalina.sh jpda run
 
     mvn -am -pl spring4shell-war jetty:run
 
