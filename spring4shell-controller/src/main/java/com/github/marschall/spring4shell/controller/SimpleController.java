@@ -14,19 +14,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class SimpleController {
-  
-  private static final Set<String> IGNORED_PROPERTIES = Set.of("class", "name", "parent");
-  
+
+  private static final Set<String> IGNORED_PROPERTIES = Set.of(
+      // normal getters
+      "class", "name", "parent",
+      // additional getters on ClassLoader
+      "defaultAssertionStatus", "definedPackages", "platformClassLoader", "registeredAsParallelCapable", "systemClassLoader", "unnamedModule");
+
   private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
   @PostMapping(path =  "/model", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   public ClassloaderModel jsonEnpoint(@RequestBody Model model) {
     LOG.info("jsonEnpoint");
+
     ClassLoader classLoader = this.getClass().getClassLoader();
-    
     return buildClassloaderModel(classLoader);
   }
-  
+
   private static ClassloaderModel buildClassloaderModel(ClassLoader classLoader) {
     ClassLoader parent = classLoader.getParent();
     ClassloaderModel parentModel = parent != null ? buildClassloaderModel(parent) : null;
@@ -41,7 +45,7 @@ public class SimpleController {
         }
       }
     }
-    
+
     return model;
   }
 
