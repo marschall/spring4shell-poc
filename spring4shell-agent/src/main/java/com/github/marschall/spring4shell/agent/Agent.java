@@ -12,15 +12,32 @@ import java.security.ProtectionDomain;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Java agent that replaces {@code org.springframework.web.bind.WebDataBinder}
+ * with a patched version.
+ */
 public class Agent {
 
 	private static final String WEB_DATA_BINDER = "org.springframework.web.bind.WebDataBinder";
 
-	public static void agentmain(String argString, Instrumentation instrumentation) {
+	/**
+	 * Called when the agent is started after VM startup.
+	 * 
+	 * @param agentArgs agent argument line
+	 * @param instrumentation {@link Instrumentation} provided by the JVM
+	 */
+	public static void agentmain(String agentArgs, Instrumentation instrumentation) {
 		register(instrumentation);
 	}
 
-	public static void premain(String argString, Instrumentation instrumentation) {
+	/**
+	 * Called before {@code main(String[])} when the agent is specified on the command line
+	 * using {@code -javaagent:<jarpath>}.
+	 * 
+	 * @param agentArgs agent argument line
+	 * @param instrumentation {@link Instrumentation} provided by the JVM
+	 */
+	public static void premain(String agentArgs, Instrumentation instrumentation) {
 		register(instrumentation);
 	}
 
@@ -32,7 +49,7 @@ public class Agent {
 	}
 
 	private static void redefineLoadedClass(Instrumentation instrumentation) {
-		List<Class<?>> classes = new ArrayList<>();
+		List<Class<?>> classes = new ArrayList<>(2);
 		for (Class<?> clazz : instrumentation.getAllLoadedClasses()) {
 			if (clazz.getName().equals(WEB_DATA_BINDER)) {
 				classes.add(clazz);
