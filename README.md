@@ -2,7 +2,7 @@
 
 ## Insights
 
-Parameters not annotated (eg. with `@RequestBody`) cause the problem.
+Parameters not annotated or annotated with `@ModelAttribute` cause the problem. Other annotated ones eg. with `@RequestBody` do not cause the problem.
 
 org.apache.catalina.loader.WebappClassLoaderBase.getResources().getContext()
 
@@ -27,6 +27,8 @@ Set break points in
 ## Classloaders
 
 - `org.jboss.modules.ModuleClassLoader`
+  -> does not seem to expose anything
+- `org.springframework.boot.loader.LaunchedURLClassLoader`
   -> does not seem to expose anything
 - `org.eclipse.jetty.webapp.WebAppClassLoader`
   -> exposes a context as well

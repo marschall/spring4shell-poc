@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.marschall.spring4shell.model.ClassloaderModel;
 
 @RestController
-public class SimpleController {
+public class PocController {
 
   private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 

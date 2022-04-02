@@ -50,6 +50,8 @@
   <modules>
     <module>spring4shell-agent</module>
     <module>spring4shell-boot</module>
+    <module>spring4shell-boot-tomcat</module>
+    <module>spring4shell-boot-jetty</module>
     <module>spring4shell-client</module>
     <module>spring4shell-controller</module>
     <module>spring4shell-bare-war</module>

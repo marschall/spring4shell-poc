@@ -9,8 +9,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 public class PocWebMvcConfiguration {
 
   @Bean
-  public SimpleController simpleController() {
-    return new SimpleController();
+  public PocController simpleController() {
+    return new PocController();
   }
 
 }
