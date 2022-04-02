@@ -41,3 +41,7 @@ Remove `jsp` / `org.apache.jasper.servlet.JspServlet` from `${TOMCAT_HOME}/conf/
 Add to `${TOMCAT_HOME}/conf/server.xml`
 
     <Valve className="com.github.marschall.spring4shell.valve.SimpleFilterValue" />
+
+## Agent
+
+    jcmd $PID JVMTI.agent_load $(pwd)/spring4shell-agent/target/spring4shell-agent-0.1.0-SNAPSHOT.jar 
