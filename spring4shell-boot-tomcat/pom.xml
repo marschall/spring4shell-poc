@@ -23,7 +23,7 @@
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>spring4shell-model</artifactId>
+      <artifactId>spring4shell-controller</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>

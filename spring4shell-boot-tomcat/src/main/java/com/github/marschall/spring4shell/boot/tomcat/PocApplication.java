@@ -5,12 +5,14 @@ import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Import;
 
+import com.github.marschall.spring4shell.controller.PocWebMvcConfiguration;
+
 
 @Import(PocWebMvcConfiguration.class)
 @SpringBootConfiguration
 @EnableAutoConfiguration
 public class PocApplication {
-  
+
   public static void main(String[] args) {
     SpringApplication.run(PocApplication.class, args);
   }
