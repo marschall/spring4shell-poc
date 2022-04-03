@@ -11,9 +11,9 @@ import java.nio.file.Paths;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.connector.Connector;
+import org.apache.catalina.core.StandardContext;
 import org.apache.catalina.startup.Tomcat;
 import org.apache.coyote.http11.Http11NioProtocol;
 import org.junit.jupiter.api.Test;
@@ -33,7 +33,12 @@ class SimpleFilterValueTests {
     
     tomcat.getHost().getPipeline().addValve(new SimpleFilterValue());
 
-    Context context = tomcat.addContext("", Paths.get("src", "test", "resources", "docroot").toAbsolutePath().toString());
+    StandardContext context = (StandardContext) tomcat.addContext("", Paths.get("src", "test", "resources", "docroot").toAbsolutePath().toString());
+    // these cause illegal access warnings
+    context.setClearReferencesObjectStreamClassCaches(false);
+    context.setClearReferencesThreadLocals(false);
+    context.setClearReferencesRmiTargets(false);
+
     String servletName = "ok-servlet";
     Tomcat.addServlet(context, servletName, new OkServlet());
     context.addServletMappingDecoded("/", servletName);
