@@ -16,13 +16,17 @@ import org.apache.catalina.connector.Connector;
 import org.apache.catalina.core.StandardContext;
 import org.apache.catalina.startup.Tomcat;
 import org.apache.coyote.http11.Http11NioProtocol;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 class SimpleFilterValueTests {
-  
-  @Test
-  void invoke() throws LifecycleException, IOException {
-    Tomcat tomcat = new Tomcat();
+
+  private static volatile Tomcat tomcat;
+
+  @BeforeAll
+  static void startTomcat() throws LifecycleException {
+    tomcat = new Tomcat();
 
     Connector connector = new Connector(Http11NioProtocol.class.getName());
     connector.setPort(8080);
@@ -30,7 +34,7 @@ class SimpleFilterValueTests {
     connector.setThrowOnFailure(true);
     tomcat.getService().addConnector(connector);
     tomcat.setConnector(connector);
-    
+
     tomcat.getHost().getPipeline().addValve(new SimpleFilterValue());
 
     StandardContext context = (StandardContext) tomcat.addContext("", Paths.get("src", "test", "resources", "docroot").toAbsolutePath().toString());
@@ -44,22 +48,22 @@ class SimpleFilterValueTests {
     context.addServletMappingDecoded("/", servletName);
 
     tomcat.start();
-
-    try {
-      sentNotBlockedRequest();
-      sentBlockedRequest();
-    } finally {
-      tomcat.stop();
-      tomcat.destroy();
-    }
   }
 
-  private void sentNotBlockedRequest() throws IOException {
+  @AfterAll
+  static void stopTomcat() throws LifecycleException {
+    tomcat.stop();
+    tomcat.destroy();
+  }
+
+  @Test
+  void sentNotBlockedRequest() throws IOException {
     int statusCode = sendBody("module.resources.context.parent.pipeline.first.suffix=.j%25%7Bc2%7Di");
     assertEquals(HttpServletResponse.SC_OK, statusCode, "HTTP status code");
   }
 
-  private void sentBlockedRequest() throws IOException {
+  @Test
+  void sentBlockedRequest() throws IOException {
     int statusCode = sendBody("class.module.classLoader.resources.context.parent.pipeline.first.suffix=.j%25%7Bc2%7Di");
     assertEquals(HttpServletResponse.SC_FORBIDDEN, statusCode, "HTTP status code");
   }

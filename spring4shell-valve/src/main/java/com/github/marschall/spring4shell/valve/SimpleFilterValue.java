@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import org.apache.catalina.Valve;
 import org.apache.catalina.connector.Request;
 import org.apache.catalina.connector.Response;
 import org.apache.catalina.valves.RemoteHostValve;
@@ -14,6 +15,10 @@ import org.apache.catalina.valves.ValveBase;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
 
+/**
+ * A {@link Valve} that denies requests that have a {@code .class} or
+ * {@code class.} property.
+ */
 public class SimpleFilterValue extends ValveBase {
 
   private static final Log LOG = LogFactory.getLog(RemoteHostValve.class);
@@ -35,7 +40,7 @@ public class SimpleFilterValue extends ValveBase {
   private boolean isDenied(Request request) throws IOException {
     Enumeration<String> parameterNames = request.getParameterNames();
     while (parameterNames.hasMoreElements()) {
-      String parameterName = (String) parameterNames.nextElement();
+      String parameterName = parameterNames.nextElement();
       if (isDenied(parameterName)) {
         LOG.warn("denied request with property: " + parameterName);
         return true;
@@ -44,7 +49,7 @@ public class SimpleFilterValue extends ValveBase {
     String method = request.getMethod();
     if (method.equals("POST")) {
       String contentType = request.getContentType();
-      if (contentType.equalsIgnoreCase( "multipart/form-data")) {
+      if (contentType.equalsIgnoreCase("multipart/form-data")) {
         try {
           for (Part part : request.getParts()) {
             String partName = part.getName();
